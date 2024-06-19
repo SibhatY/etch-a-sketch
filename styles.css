@@ -17,8 +17,13 @@
 
 
 .square {
-    
+
     flex: 0 0 calc((100% / 16));
     height: calc(640px / 16);
     border: 1px solid #ccc;
+}
+
+.square-hover {
+
+    background-color: black;
 }
