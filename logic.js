@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const gridContainer = document.querySelector('#grid-container');
 
+    const colorPicker = document.querySelector(`#color-picker`);
+
     let isMouseDown = false;
 
     generateGrid(16);
@@ -51,7 +53,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (currStrokes <= 50) {
 
                         square.dataset.strokes = currStrokes;
-                        square.style.backgroundColor = `rgba(0, 0, 0, ${currStrokes * 0.05})`;
+
+                        
+                        let opMultiple = 0.05;
+                        
+                        let convertedColor = hexToRGB(colorPicker.value, currStrokes * opMultiple);
+
+                        square.style.backgroundColor = convertedColor;
                     }
 
                 }
@@ -70,6 +78,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             isMouseDown = false;
         });
+    }
+
+    function hexToRGB(hex, op) {
+
+        let r = parseInt(hex.slice(1, 3), 16);
+        let g = parseInt(hex.slice(3, 5), 16);
+        let b = parseInt(hex.slice(5, 7), 16);
+
+        return `rgba(${r}, ${g}, ${b}, ${op})`;
     }
 
 
