@@ -42,6 +42,15 @@
     margin-top: 24px;
     
 }
+#color-picker {
+
+    display: block;
+    margin: 24px auto;
+    width: 10%;
+}
+
+
+
 
 #title {
     font-family: 'Permanent Marker', cursive;
