@@ -39,10 +39,20 @@ document.addEventListener('DOMContentLoaded', function() {
             square.classList.add(`square`);
             square.style.width = `${squareSize}%`;
             square.style.height = `${squareSize}%`;
+            square.dataset.strokes = 0;
 
             square.addEventListener(`mousemove`, function() {
 
                 if (isMouseDown) {
+
+                    let currStrokes = parseInt(square.dataset.strokes, 10);
+                    currStrokes += 1;
+
+                    if (currStrokes <= 10) {
+
+                        square.dataset.strokes = currStrokes;
+                        square.style.backgroundColor = `rgba(0, 0, 0, ${currStrokes * 0.1})`;
+                    }
 
                     square.classList.add(`square-hover`);
                 }
