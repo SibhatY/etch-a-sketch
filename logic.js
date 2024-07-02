@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const gridContainer = document.querySelector('#grid-container');
 
+    let isMouseDown = false;
+
     generateGrid(16);
 
 
@@ -38,12 +40,26 @@ document.addEventListener('DOMContentLoaded', function() {
             square.style.width = `${squareSize}%`;
             square.style.height = `${squareSize}%`;
 
-            square.addEventListener(`mouseover`, function() {
+            square.addEventListener(`mousemove`, function() {
 
-                square.classList.add(`square-hover`);
+                if (isMouseDown) {
+
+                    square.classList.add(`square-hover`);
+                }
+                
             });
             gridContainer.appendChild(square);
         }
+
+        gridContainer.addEventListener(`mousedown`, function() {
+
+            isMouseDown = true;
+        });
+
+        document.addEventListener(`mouseup`, function() {
+
+            isMouseDown = false;
+        });
     }
 
 

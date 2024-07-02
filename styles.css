@@ -12,6 +12,7 @@
     margin: 0 auto;
     border: 2px solid black;
     padding: 0;
+
     
     
 }
@@ -30,4 +31,22 @@
 .square-hover {
 
     background-color: black;
+}
+
+
+
+#resize-button {
+
+    display: flex;
+    margin: 0 auto;
+    margin-top: 24px;
+    
+}
+
+#title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 64px;
+    text-align: center;
+    padding: 16px;
+
 }
