@@ -50,6 +50,16 @@
     
 }
 
+#eraser-button {
+
+    margin: 0 5px;
+}
+
+#eraser-button.active {
+    background-color: #ccc;
+    border: 2px solid black;
+}
+
 #color-picker {
 
     display: block;

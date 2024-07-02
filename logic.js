@@ -1,16 +1,17 @@
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     const gridContainer = document.querySelector('#grid-container');
 
     const colorPicker = document.querySelector(`#color-picker`);
 
     let isMouseDown = false;
+    let isEraser = false;
 
     generateGrid(16);
 
 
-    document.querySelector(`#resize-button`).addEventListener(`click`, function() {
+    document.querySelector(`#resize-button`).addEventListener(`click`, function () {
 
         let squaresSide = prompt("Enter number of squares-per-side for a new grid. No more than 100!", 0);
         squaresSide = parseInt(squaresSide);
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    document.querySelector(`#clear-button`).addEventListener(`click`, function() {
+    document.querySelector(`#clear-button`).addEventListener(`click`, function () {
 
         const squares = gridContainer.querySelectorAll(`.square`);
 
@@ -35,7 +36,14 @@ document.addEventListener('DOMContentLoaded', function() {
             square.style.backgroundColor = `#f8f8f8`;
             square.dataset.strokes = 0;
         });
-        
+
+    });
+
+    document.querySelector(`#eraser-button`).addEventListener(`click`, function () {
+
+        isEraser = !isEraser;
+        this.classList.toggle('active');
+
     });
 
 
@@ -48,10 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const squareSize = 100 / squaresSide;
-        
 
 
-        for (let i = 0; i < squaresSide*squaresSide; i++) {
+
+        for (let i = 0; i < squaresSide * squaresSide; i++) {
 
             const square = document.createElement(`div`);
             square.classList.add(`square`);
@@ -59,38 +67,50 @@ document.addEventListener('DOMContentLoaded', function() {
             square.style.height = `${squareSize}%`;
             square.dataset.strokes = 0;
 
-            square.addEventListener(`mousemove`, function() {
+            square.addEventListener(`mousemove`, function () {
 
                 if (isMouseDown) {
 
-                    let currStrokes = parseInt(square.dataset.strokes, 10);
-                    currStrokes += 1;
+                    if (isEraser) {
 
-                    if (currStrokes <= 50) {
+                        this.style.backgroundColor = `#f8f8f8`;
+                        this.dataset.strokes = 0;
+                    }
+                    else {
 
-                        square.dataset.strokes = currStrokes;
+                        let currStrokes = parseInt(square.dataset.strokes, 10);
+                        currStrokes += 1;
 
-                        
-                        let opMultiple = 0.05;
-                        
-                        let convertedColor = hexToRGB(colorPicker.value, currStrokes * opMultiple);
+                        if (currStrokes <= 50) {
 
-                        square.style.backgroundColor = convertedColor;
+                            square.dataset.strokes = currStrokes;
+
+
+                            let opMultiple = 0.05;
+
+                            let convertedColor = hexToRGB(colorPicker.value, currStrokes * opMultiple);
+
+                            square.style.backgroundColor = convertedColor;
+                        }
+
+
                     }
 
+
+
                 }
-                
+
             });
             gridContainer.appendChild(square);
         }
 
-        gridContainer.addEventListener(`mousedown`, function(e) {
+        gridContainer.addEventListener(`mousedown`, function (e) {
 
             isMouseDown = true;
             e.preventDefault();
         });
 
-        document.addEventListener(`mouseup`, function() {
+        document.addEventListener(`mouseup`, function () {
 
             isMouseDown = false;
         });
