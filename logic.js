@@ -25,6 +25,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+
+
+    document.querySelector(`#clear-button`).addEventListener(`click`, function() {
+
+        const squares = gridContainer.querySelectorAll(`.square`);
+
+        squares.forEach(square => {
+            square.style.backgroundColor = `#f8f8f8`;
+            square.dataset.strokes = 0;
+        });
+        
+    });
+
+
+
+
     function generateGrid(squaresSide) {
 
         while (gridContainer.firstChild) {

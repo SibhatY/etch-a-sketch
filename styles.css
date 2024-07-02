@@ -28,25 +28,33 @@
     
 }
 
-/* .square-hover {
 
-    background-color: black;
-} */
 
+.button-container {
+
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
 
 
 #resize-button {
 
-    display: flex;
-    margin: 0 auto;
-    margin-top: 24px;
+    margin: 0 5px;
     
 }
+
+#clear-button {
+
+    margin: 0 5px;
+    
+}
+
 #color-picker {
 
     display: block;
     margin: 24px auto;
-    width: 10%;
+    
 }
 
 
