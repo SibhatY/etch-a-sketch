@@ -48,22 +48,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     let currStrokes = parseInt(square.dataset.strokes, 10);
                     currStrokes += 1;
 
-                    if (currStrokes <= 10) {
+                    if (currStrokes <= 50) {
 
                         square.dataset.strokes = currStrokes;
-                        square.style.backgroundColor = `rgba(0, 0, 0, ${currStrokes * 0.1})`;
+                        square.style.backgroundColor = `rgba(0, 0, 0, ${currStrokes * 0.05})`;
                     }
 
-                    square.classList.add(`square-hover`);
                 }
                 
             });
             gridContainer.appendChild(square);
         }
 
-        gridContainer.addEventListener(`mousedown`, function() {
+        gridContainer.addEventListener(`mousedown`, function(e) {
 
             isMouseDown = true;
+            e.preventDefault();
         });
 
         document.addEventListener(`mouseup`, function() {
